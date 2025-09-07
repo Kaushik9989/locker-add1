@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Loading...</title>
+  <style>
+    /* Full background */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background: #2e2eab; /* solid background */
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Glass-like box container */
+    .container {
+      background: rgba(255, 255, 255, 0.08); /* translucent */
+      padding: 40px 60px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      backdrop-filter: blur(12px);  /* frosted glass effect */
+      -webkit-backdrop-filter: blur(12px); /* Safari support */
+      text-align: center;
+      min-width: 320px;
+      border: 1px solid rgba(255,255,255,0.15); /* glass border */
+    }
+
+    .logo {
+      height: 100px;
+      margin-bottom: 20px;
+    }
+
+    /* Loader animation */
+    .loader {
+      border: 6px solid rgba(255, 255, 255, 0.15);
+      border-top: 6px solid #00ffcc;
+      border-radius: 50%;
+      width: 65px;
+      height: 65px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 15px rgba(0, 255, 204, 0.6);
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .text {
+      font-size: 20px;
+      color: #e0f7f7;
+      letter-spacing: 1px;
+      animation: fadePulse 2s infinite;
+    }
+
+    @keyframes fadePulse {
+      0%, 100% { opacity: 0.6; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Logo -->
+    <img src="logo.png" alt="Company Logo" class="logo">
+
+    <!-- Loader -->
+    <div class="loader"></div>
+
+    <!-- Loading Text -->
+    <div class="text">Application Loading...</div>
+  </div>
+</body>
+</html>

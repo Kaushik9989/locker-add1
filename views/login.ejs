@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #74ebd5 0%, #9face6 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .login-card {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        max-width: 360px;
+        width: 100%;
+        text-align: center;
+      }
+
+      .login-card h2 {
+        margin-bottom: 1.5rem;
+        color: #333;
+      }
+
+      .login-card form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .login-card label {
+        text-align: left;
+        font-size: 0.9rem;
+        color: #555;
+      }
+
+      .login-card input {
+        width: 100%;
+        padding: 0.7rem;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 1rem;
+        transition: border 0.2s;
+      }
+
+      .login-card input:focus {
+        border-color: #6a5acd;
+        outline: none;
+      }
+
+      .login-card button {
+        background: #6a5acd;
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .login-card button:hover {
+        background: #5848c2;
+      }
+
+      .error-message {
+        color: red;
+        margin-bottom: 1rem;
+        font-size: 0.9rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-card">
+      <h2>🔐 Install Login</h2>
+      ${error.length ? `<p class="error-message">${error.join("<br>")}</p>` : ""}
+      <form method="POST" action="/login">
+        <div>
+          <label for="username">Username</label>
+          <input id="username" name="username" required />
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input id="password" type="password" name="password" required />
+        </div>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </body>
+</html>
