@@ -226,6 +226,37 @@ app.post('/add-locker', ensureAuthenticated, async (req, res) => {
     });
   }
 });
+app.get('/lockers', ensureAuthenticated, async (req, res, next) => {
+  try {
+    // Prefer createdAt if your schema has timestamps, otherwise sort by _id (ObjectId roughly increases over time)
+    const sortField = (Locker.schema && Locker.schema.paths && Locker.schema.paths.createdAt) ? { createdAt: -1 } : { _id: -1 };
+
+    const lockers = await Locker.find({}).sort(sortField).lean();
+
+    res.render('lockers', { lockers, messages: req.flash() });
+  } catch (err) {
+    next(err);
+  }
+});
+
+
+// API: delete locker by ID
+app.delete('/api/locker/:lockerId', ensureAuthenticated, async (req, res, next) => {
+  try {
+    const { lockerId } = req.params;
+
+    const deleted = await Locker.findOneAndDelete({ lockerId });
+
+    if (!deleted) {
+      return res.status(404).json({ success: false, message: 'Locker not found' });
+    }
+
+    res.json({ success: true, message: `Locker ${lockerId} deleted successfully` });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Failed to delete locker' });
+  }
+});
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
